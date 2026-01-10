@@ -16,7 +16,8 @@ const allowedOrigins = [
   'http://127.0.0.1:3000',
   'http://127.0.0.1:5173',
   process.env.FRONTEND_URL, // Add your Vercel URL in .env
-  'https://your-vercel-app.vercel.app', // Replace with your actual Vercel URL
+  'https://ragpdf-mhx70e4h5-shinpachi1009s-projects.vercel.app/',
+  'https://ragpdf-mhx70e4h5-shinpachi1009s-projects.vercel.app', // Replace with your actual Vercel URL
 ];
 
 app.use(cors({
@@ -34,8 +35,15 @@ app.use(cors({
   },
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization']
+  allowedHeaders: ['Content-Type', 'Authorization', 'ngrok-skip-browser-warning']
 }));
+
+// Middleware to log requests
+app.use((req, res, next) => {
+  console.log(`${new Date().toISOString()} - ${req.method} ${req.path}`);
+  console.log('Headers:', req.headers);
+  next();
+});
 
 // Middleware
 app.use(express.json());

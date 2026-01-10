@@ -1,4 +1,10 @@
+// Configuration - Update this with your ngrok URL
+const API_BASE_URL = window.API_BASE_URL || 'https://overbumptiously-internecine-herbert.ngrok-free.dev';
+
 document.addEventListener('DOMContentLoaded', function() {
+    // Display API URL in console for debugging
+    console.log('API Base URL:', API_BASE_URL);
+    
     // Navigation
     const navLinks = document.querySelectorAll('nav a');
     const sections = document.querySelectorAll('section');
@@ -93,10 +99,21 @@ document.addEventListener('DOMContentLoaded', function() {
         formData.append('pdf', file);
 
         try {
-            const response = await fetch('/api/analyze-pdf', {
+            const response = await fetch(`${API_BASE_URL}/api/analyze-pdf`, {
                 method: 'POST',
-                body: formData
+                body: formData,
+                headers: {
+                    'ngrok-skip-browser-warning': 'true'
+                }
             });
+
+            // Check if response is JSON
+            const contentType = response.headers.get('content-type');
+            if (!contentType || !contentType.includes('application/json')) {
+                const textResponse = await response.text();
+                console.error('Non-JSON response received:', textResponse.substring(0, 500));
+                throw new Error('Server returned non-JSON response. Check if ngrok is configured correctly or if backend is running.');
+            }
 
             const result = await response.json();
 
@@ -124,7 +141,14 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         } catch (error) {
             console.error('Error analyzing PDF:', error);
-            alert(`Failed to analyze PDF: ${error.message}`);
+            let errorMessage = `Failed to analyze PDF: ${error.message}`;
+            
+            // Provide helpful error messages
+            if (error.message.includes('Failed to fetch') || error.message.includes('NetworkError')) {
+                errorMessage = `Cannot connect to the analysis server. Please make sure:\n\n1. Your local server is running\n2. ngrok tunnel is active\n3. API_BASE_URL in script.js is correctly configured\n\nCurrent API URL: ${API_BASE_URL}`;
+            }
+            
+            alert(errorMessage);
         } finally {
             // Hide loading spinner
             loadingSpinner.style.display = 'none';
@@ -314,7 +338,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Load history on page load
     async function loadHistory() {
         try {
-            const response = await fetch('/api/history');
+            const response = await fetch(`${API_BASE_URL}/api/history`);
             const history = await response.json();
             
             const historyList = document.getElementById('historyList');
@@ -328,6 +352,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         } catch (error) {
             console.error('Error loading history:', error);
+            console.log('History feature requires backend connection');
         }
     }
 
