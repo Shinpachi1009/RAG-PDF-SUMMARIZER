@@ -1,0 +1,27 @@
+# Core ML/AI
+torch>=2.0.0
+transformers>=4.30.0
+sentence-transformers>=2.2.0
+langchain>=0.0.300
+langchain-text-splitters>=0.0.1
+
+# Vector Database
+faiss-cpu>=1.7.0
+
+# PDF Processing
+pypdf>=3.17.0
+pypdf2>=3.0.0  # Alternative PDF library
+
+# Data Processing
+numpy>=1.24.0
+pandas>=2.0.0
+
+# JSON/Serialization
+ujson>=5.0.0  # Faster JSON processing
+
+# Utilities
+tqdm>=4.65.0  # Progress bars
+python-dotenv>=1.0.0  # Environment variables
+
+# Model-specific (if using specific summarization models)
+accelerate>=0.20.0  # For model optimization

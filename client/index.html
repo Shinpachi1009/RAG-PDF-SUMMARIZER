@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home | AI-SMART PDF READER AND SUMMARIZER</title>
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+  <header>
+    <div class="container header-container">
+      <!-- Title centered at top -->
+      <div class="header-title">
+        <a style="color: #fff;text-decoration: none;" href="/">
+          <h1><i class="fas fa-leaf"></i> AI-SMART PDF READER AND SUMMARIZER</h1>
+        </a>
+      </div>
+      
+      <!-- Hamburger menu toggle (mobile) -->
+      <button class="menu-toggle"><i class="fas fa-bars"></i></button>
+      
+      <!-- Navigation below title -->
+      <nav>
+        <ul id="navMenu">
+          <li><a href="#" data-target="home">Home</a></li>
+          <li><a href="#" data-target="detect">Scan PDF</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="home" class="hero-section">
+      <h2>Welcome to AI-SMART PDF</h2>
+      <p>The world's smartest PDF reader for summaries. Read faster with instant AI insights</p>
+      <div class="feature-grid">
+        <div class="feature-card" id="uploadPdfCard">
+          <i class="fas fa-upload"></i>
+          <h3>Upload PDF</h3>
+          <p>Upload a PDF file from your device for analysis and get detailed summaries with original content.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="detect" class="detection-section">
+      <h2>Scan PDF</h2>
+      <div class="upload-area">
+        <p>Upload a PDF file for analysis:</p>
+        <input type="file" id="pdfInput" accept="application/pdf">
+        <button id="uploadBtn" class="btn primary-btn"><i class="fas fa-upload"></i> Select PDF File</button>
+
+        <div class="pdf-preview-container">
+          <div id="loadingSpinner" class="spinner-container" style="display: none;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><linearGradient id="a12"><stop offset="0" stop-color="#28A745" stop-opacity="0"></stop><stop offset="1" stop-color="#28A745"></stop></linearGradient><circle fill="none" stroke="url(#a12)" stroke-width="15" stroke-linecap="round" stroke-dasharray="0 44 0 44 0 44 0 44 0 360" cx="100" cy="100" r="70" transform-origin="center"><animateTransform type="rotate" attributeName="transform" calcMode="discrete" dur="2" values="360;324;288;252;216;180;144;108;72;36" repeatCount="indefinite"></animateTransform></circle></svg>
+            <p>Analyzing PDF and extracting content...</p>
+          </div>
+          <div id="pdfPreview" class="pdf-preview">
+            <i class="fas fa-file-pdf pdf-icon"></i>
+            <p id="pdfFileName">No PDF selected</p>
+            <p id="pdfFileSize"></p>
+          </div>
+        </div>
+
+        <button id="analyzePdfBtn" class="btn success-btn" disabled><i class="fas fa-search"></i> Analyze PDF</button>
+      </div>
+
+      <div id="resultsSection" class="results-area" style="display:none;">
+        <h3>Analysis Results</h3>
+        <div class="result-item"><strong>Document Type:</strong>
+          <span id="diseaseType"></span>
+        </div>
+        <div class="result-item"><strong>Confidence Score:</strong>
+          <span id="confidenceScore"></span>
+        </div>
+
+        <div class="result-description">
+          <h4>Detailed Summary:</h4>
+          <p id="diseaseDescription"></p>
+        </div>
+
+        <!-- Original text section will be inserted here by JavaScript -->
+
+        <div class="prescription-mitigation">
+          <h4>Prescription:</h4>
+          <ul id="prescription">
+            <li></li>
+          </ul>
+          <h4>Mitigation Strategies:</h4>
+          <ul id="mitigation">
+            <li></li>
+          </ul>
+        </div>
+
+        <button class="btn share-btn">
+          <i class="fas fa-share-alt"></i> Share Results
+        </button>
+      </div>
+    </section>
+
+    <section id="history" class="history-section">
+      <h2>Summarized Content</h2>
+      <div id="historyList" class="history-list"></div>
+      <p id="noHistoryMessage" style="display:none; text-align:center;">No uploaded pdf</p>
+    </section>
+    <button id="loadMoreBtn" class="btn" style="display: none; margin: 20px auto 0;">Show More</button>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 AI-SMART PDF. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Fullscreen image modal -->
+  <div id="imageModal" class="modal"
+    style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:9999; justify-content:center; align-items:center;">
+    <img id="modalImg" src="" style="object-fit: contain;object-position: center;width:100%; max-height:90%;">
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
