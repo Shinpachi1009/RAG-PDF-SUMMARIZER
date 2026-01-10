@@ -2,7 +2,7 @@
 // Replace 'your-ngrok-url' with your actual ngrok URL
 // Example: 'https://1234-56-78-90-12.ngrok-free.app'
 
-window.API_BASE_URL = 'https://your-ngrok-url.ngrok-free.app';
+window.API_BASE_URL = 'https://overbumptiously-internecine-herbert.ngrok-free.dev';
 
 // You can also set this dynamically based on environment
 // Uncomment the following if you want to detect environment automatically:
