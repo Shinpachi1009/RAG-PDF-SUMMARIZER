@@ -16,8 +16,7 @@ const allowedOrigins = [
   'http://127.0.0.1:3000',
   'http://127.0.0.1:5173',
   process.env.FRONTEND_URL, // Add your Vercel URL in .env
-  'https://ragpdf-mhx70e4h5-shinpachi1009s-projects.vercel.app/',
-  'https://ragpdf-mhx70e4h5-shinpachi1009s-projects.vercel.app', // Replace with your actual Vercel URL
+  'https://ai-smart-pdf-reader-nf18a8ogo-shinpachi1009s-projects.vercel.app/', // Replace with your actual Vercel URL
 ];
 
 app.use(cors({
